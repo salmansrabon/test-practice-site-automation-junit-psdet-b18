@@ -1,6 +1,1 @@
-[
-  {
-    "password": "1234",
-    "email": "nathaniel@test.com"
-  }
-]
+[{"password":"1234","email":"nathaniel@test.com"},{"password":"1234","email":"edmundo@test.com"},{"password":"1234","email":"bert@test.com"},{"password":"1234","email":"ernie@test.com"},{"password":"1234","email":"vern@test.com"}]

@@ -28,6 +28,8 @@ public class MyJunit {
         Cookies cookies=new Cookies(driver);
         cookies.setCookie();
     }
+    @DisplayName("Login by admin")
+    @Order(1)
     @Test
     public void login() throws InterruptedException, IOException {
         driver.get("http://localhost:3000");
@@ -48,6 +50,8 @@ public class MyJunit {
         Cookies cookies=new Cookies(driver);
         cookies.getCookie();
     }
+    @DisplayName("Button click handling")
+    @Order(2)
     @Test
     public void buttonClickHandling() throws InterruptedException {
         driver.get("http://localhost:3000/dashboard/practice-components");
@@ -61,6 +65,8 @@ public class MyJunit {
         driver.switchTo().alert().accept();
 
     }
+    @DisplayName("NextJS Time handling")
+    @Order(3)
     @Test
     public void nextJSDateTimeHandling(){
         driver.get("http://localhost:3000/dashboard/practice-components");
@@ -69,6 +75,8 @@ public class MyJunit {
         dateTimeElem.sendKeys("10","Feb");
         dateTimeElem.sendKeys(Keys.ARROW_RIGHT,"2025");
     }
+    @DisplayName("Read only date handling")
+    @Order(4)
     @Test
     public void readOnlyDateHandling(){
         driver.get("http://localhost:3000/dashboard/practice-components");
@@ -77,6 +85,8 @@ public class MyJunit {
         //js.executeScript("arguments[0].removeAttribute('readonly')", dateElem);
         js.executeScript("arguments[0].value='11/24/2025'", dateElem);
     }
+    @DisplayName("Editable date handling")
+    @Order(5)
     @Test
     public void editableDateHandling(){
         driver.get("http://localhost:3000/dashboard/practice-components");
@@ -84,6 +94,8 @@ public class MyJunit {
         dateElem.sendKeys(Keys.CONTROL+"a",Keys.BACK_SPACE);
         dateElem.sendKeys("01/01/2026",Keys.ENTER);
     }
+    @DisplayName("Handle New tab")
+    @Order(5)
     @Test
     public void handleNewTab(){
         driver.get("http://localhost:3000/dashboard/practice-components");
@@ -98,6 +110,8 @@ public class MyJunit {
         driver.switchTo().window(windows.get(0));
 
     }
+    @DisplayName("Handle new window")
+    @Order(6)
     @Test
     public void handleNewWindow(){
         driver.get("http://localhost:3000/dashboard/practice-components");
@@ -116,6 +130,8 @@ public class MyJunit {
         driver.switchTo().window(mainWindow);
 
     }
+    @DisplayName("Scrap user data")
+    @Order(7)
     @Test
     public void getUsersData() throws InterruptedException {
         driver.get("http://localhost:3000/dashboard/users");
@@ -133,6 +149,7 @@ public class MyJunit {
             }
         }
     }
+    @Order(8)
     @Test
     public void handleIFrame(){
         driver.get("http://localhost:3000/dashboard/practice-components");
@@ -142,6 +159,8 @@ public class MyJunit {
         System.out.println(header);
         driver.switchTo().defaultContent();
     }
+    @DisplayName("Create new user")
+    @Order(9)
     @Test
     public void createNewUser() throws InterruptedException, IOException, ParseException {
         driver.get("http://localhost:3000/dashboard/add-user");
@@ -176,8 +195,11 @@ public class MyJunit {
         JSONManipulation.saveUsersData(email,password);
 
     }
+    @DisplayName("Update user by login with latest user")
+    @Order(10)
     @Test
-    public void updateUser() throws IOException, ParseException {
+    public void updateUser() throws IOException, ParseException, InterruptedException {
+        Thread.sleep(2000);
         driver.get("http://localhost:3000");
         JSONObject userData= JSONManipulation.readJSONData();
         String email= (String) userData.get("email");
@@ -200,6 +222,7 @@ public class MyJunit {
         Assertions.assertTrue(successTextActual.contains(successTextExpected),"Expectation do not matched");
 
     }
+    @Order(11)
     @Test
     public void hoverMenu(){
         driver.get("https://www.aiub.edu/");
@@ -210,7 +233,7 @@ public class MyJunit {
 
         driver.findElement(By.partialLinkText("ABOUT")).click();
     }
-    //@AfterAll
+    @AfterAll
     public void closeDriver(){
         driver.quit();
     }
